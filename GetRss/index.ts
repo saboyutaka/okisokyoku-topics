@@ -33,7 +33,7 @@ const httpTrigger: AzureFunction = async function (
 
     const description = "";
 
-    items.push({ title, description, link, pubDate, category, department });
+    items.push({ title: `${department} ${title}`, description, link, pubDate, category });
   });
 
   const channel = [];
