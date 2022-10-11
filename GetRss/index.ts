@@ -27,14 +27,16 @@ const httpTrigger: AzureFunction = async function (
     const a = $(td1).find("a").first();
     const href = a.attr("href");
     const link = href.startsWith('http') ? href : url + href
-    const title = a.text().trim();
+    const content = a.text().trim();
 
     const td2 = $(tr).find("td")[1];
     const department = $(td2).text().trim();
 
     const description = "";
 
-    items.push({ title: `${department} ${title}`, description, link, pubDate, category });
+    const title = `[${department}] ${content}`
+
+    items.push({ title, description, link, pubDate, category });
   });
 
   const channel = [];
