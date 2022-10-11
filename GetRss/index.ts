@@ -8,7 +8,7 @@ const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
-  const url = req.query.url || "https://www.ogb.go.jp/";
+  const url = "https://www.ogb.go.jp";
   const axios = require("axios");
   axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
@@ -25,7 +25,8 @@ const httpTrigger: AzureFunction = async function (
 
     const td1 = $(tr).find("td")[0];
     const a = $(td1).find("a").first();
-    const link = a.attr("href");
+    const href = a.attr("href");
+    const link = href.startsWith('http') ? href : url + href
     const title = a.text().trim();
 
     const td2 = $(tr).find("td")[1];
